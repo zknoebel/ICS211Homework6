@@ -1,12 +1,11 @@
 public class Shopper {
-  private int numItems;
+	private int numItems;
 
+	Shopper(int numberOfItems) {
+		numItems = numberOfItems;
+	}
 
-  Shopper() {
-
-  }
-  
-  public int getNumItems(){
-    return numItems;
-  }
+	public int getNumItems() {
+		return numItems;
+	}
 }
