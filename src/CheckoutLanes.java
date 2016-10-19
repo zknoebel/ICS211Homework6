@@ -33,7 +33,7 @@ public class CheckoutLanes {
 					while (((Shopper) expressQueues[i].peek()).getNumItems() > 10) {
 						System.out.println(
 								"Express lane shopper with " + ((Shopper) expressQueues[i].peek()).getNumItems()
-										+ " items moved to lane " + shortestRegularQueue());
+										+ " items moved to lane " + (shortestRegularQueue() + expressQueues.length));
 						regularQueues[shortestRegularLane].add((Shopper) expressQueues[i].remove());
 					}
 					if (((Shopper) expressQueues[i].peek()) != null) {
