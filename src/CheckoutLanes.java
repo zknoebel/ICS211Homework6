@@ -3,21 +3,34 @@ public class CheckoutLanes {
 	private CircularArrayQueue<Shopper>[] regularQueues;
 	private int shortestRegularLane = -1;
 
-	public CheckoutLanes(int numExpress, int numRegular) {
+	/**
+	 * Checks to see if there is at least one regular line
+	 * if not, throws exception
+	 * then adds regular lanes and express lanes
+	 * @param numExpress number of express lanes to be made
+	 * @param numRegular number of regular lanes to be made
+	 */
+	@SuppressWarnings("unchecked")
+  public CheckoutLanes(int numExpress, int numRegular) {
 		if (numRegular < 1) {
 			throw new IllegalStateException();
 		} else {
 			expressQueues = new CircularArrayQueue[numExpress];
 			regularQueues = new CircularArrayQueue[numRegular];
 			for (int i = 0; i < numExpress; i++) {
-				expressQueues[i] = new CircularArrayQueue();
+				expressQueues[i] = new CircularArrayQueue<Shopper>();
 			}
 			for (int i = 0; i < numRegular; i++) {
-				regularQueues[i] = new CircularArrayQueue();
+				regularQueues[i] = new CircularArrayQueue<Shopper>();
 			}
 		}
 	}
 
+	/**
+	 * adds a shopper to one of the lanes
+	 * @param laneNumber the lane the shopper will go into
+	 * @param shopper the shopper to be added to the line
+	 */
 	public void enterLane(int laneNumber, Shopper shopper) {
 		if (laneNumber < expressQueues.length) {
 			expressQueues[laneNumber].add(shopper);
@@ -26,6 +39,11 @@ public class CheckoutLanes {
 		}
 	}
 
+	/**
+	 * simulates the shoppers going through the lanes.
+	 * if a shopper in the express lane has too many (over 10) items,
+	 * then the shopper gets moved to the shortest regular lane
+	 */
 	public void simulateCheckout() {
 		while (shoppersPresent()) {
 			for (int i = 0; i < expressQueues.length; i++) {
@@ -65,16 +83,16 @@ public class CheckoutLanes {
 		return false;
 	}
 
-	private int shortestExpressQueue() {
-		int min = 0;
-		for (int i = 1; i < expressQueues.length; i++) {
-			if (((CircularArrayQueue<Shopper>) expressQueues[min])
-					.size() > ((CircularArrayQueue<Shopper>) expressQueues[i]).size()) {
-				min = i;
-			}
-		}
-		return min;
-	}
+//	private int shortestExpressQueue() {
+//		int min = 0;
+//		for (int i = 1; i < expressQueues.length; i++) {
+//			if (((CircularArrayQueue<Shopper>) expressQueues[min])
+//					.size() > ((CircularArrayQueue<Shopper>) expressQueues[i]).size()) {
+//				min = i;
+//			}
+//		}
+//		return min;
+//	}
 
 	private int shortestRegularQueue() {
 		shortestRegularLane = 0;

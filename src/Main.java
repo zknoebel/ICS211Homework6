@@ -1,4 +1,10 @@
-
+/**
+ * 
+ * Main
+ *
+ * @author Zachery Knoebel
+ *This class is the test class for CircularArrayQueue and CheckoutLanes
+ */
 public class Main {
 	public static void main(String[] args) {
 		CheckoutLanes checkout = new CheckoutLanes(1, 2);

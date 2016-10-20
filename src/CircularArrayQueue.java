@@ -1,22 +1,45 @@
+/**
+ * @author zac
+ * 
+ * This class creates a queue that is structured around a circular array
+ */
+
 import java.util.NoSuchElementException;
 
-public class CircularArrayQueue<E> implements Queue211<Object> {
-	private E[] data = (E[]) new Object[10];
+public class CircularArrayQueue<E> implements Queue211<E> {
+  static int DEFAULT_SIZE = 10;
+	private E[] data;
 	private E temp;
 	private int front = 0;
 	private int end = 0;
 	private int size = 0;
 
-	CircularArrayQueue() {
-
+	/**
+	 * creates CircularArrayQueue without arguments for the size of the queue
+	 */
+	@SuppressWarnings("unchecked")
+  CircularArrayQueue() {
+	  data = (E[]) new Object[DEFAULT_SIZE];
+	}
+	
+	/**
+	 * creates CircularArrayQueue with an argument for size
+	 * @param queueSize the queue will be the size of queueSize
+	 */
+	@SuppressWarnings("unchecked")
+  CircularArrayQueue(int queueSize){
+	  data = (E[]) new Object[queueSize];
 	}
 
+	/**
+	 * adds an object to the end of the queue
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean add(Object e) {
-		if (size >= data.length - 1) {
-			reallocate();
-			// throw new IllegalStateException();
+		if (size >= data.length) {
+//			reallocate();
+			 throw new IllegalStateException();
 		}
 		data[end] = (E) e;
 		end = (end + 1) % data.length;
@@ -25,8 +48,12 @@ public class CircularArrayQueue<E> implements Queue211<Object> {
 		return true;
 	}
 
+	/**
+	 * returns the first element
+	 * if there is no first element, throws exception
+	 */
 	@Override
-	public Object element() {
+	public E element() {
 		if (size == 0) {
 			throw new NoSuchElementException();
 		} else {
@@ -34,6 +61,9 @@ public class CircularArrayQueue<E> implements Queue211<Object> {
 		}
 	}
 
+	/**
+	 * if there is room in the queue, adds object e to the end
+	 */
 	@Override
 	public boolean offer(Object e) {
 		try {
@@ -43,8 +73,12 @@ public class CircularArrayQueue<E> implements Queue211<Object> {
 		}
 	}
 
+	/**
+	 * returns the first element in the queue
+	 * if there is no first element, returns null
+	 */
 	@Override
-	public Object peek() {
+	public E peek() {
 		try {
 			return element();
 		} catch (NoSuchElementException nsee) {
@@ -52,8 +86,12 @@ public class CircularArrayQueue<E> implements Queue211<Object> {
 		}
 	}
 
+	/**
+	 * removes and returns first element
+	 * if there is no first element returns null
+	 */
 	@Override
-	public Object poll() {
+	public E poll() {
 		try {
 			return remove();
 		} catch (NoSuchElementException nsee) {
@@ -61,8 +99,12 @@ public class CircularArrayQueue<E> implements Queue211<Object> {
 		}
 	}
 
+	/**
+	 * removes and returns the first element
+	 * if there is no first element, throws exception
+	 */
 	@Override
-	public Object remove() {
+	public E remove() {
 		if (size == 0) {
 			throw new NoSuchElementException();
 		} else {
@@ -73,12 +115,16 @@ public class CircularArrayQueue<E> implements Queue211<Object> {
 		}
 	}
 
+	/**
+	 * returns the size of the queue
+	 */
 	@Override
 	public int size() {
 		return size;
 	}
-
-	// moves array objects to an array of double the size
+/**
+ * moves array objects to an array of double the size
+ */
 	@SuppressWarnings("unchecked")
 	private void reallocate() {
 		Object[] dataTemp = new Object[data.length * 2];
