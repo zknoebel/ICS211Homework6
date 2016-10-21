@@ -12,7 +12,13 @@ shortest regularQueue.
 To test the functionality of the CircularArrayQueue and that of the CheckoutLanes classes, Paul provided us
 with two JUnit test files, one for each.
 
-The test file for the CircularArrayQueue was partially completed. What was left undone was ...
+The test file for the CircularArrayQueue was partially completed. What was left undone was well commented to
+give us a good idea of what the test method should test for. For each unfinished test method, I filled in 
+code that tested for what the method described.
 
-The test file for the CheckoutLanes class was just to make sure that
-it ran and completed. Other than that we were expected to test it ourselves. 
+The test file for the CheckoutLanes class was just to make sure that it ran and completed. Other than that we
+were expected to test it ourselves. To do this I created multiple multiple express and regular lines and
+filled them with shoppers that had varried numbers of items. This tested that the print functions were
+working correctly, allong with the functions of the CircularArrayClass. It also tested that the shoppers in 
+the express lane with more than one item were moved to the shortest regularQueue when they reached the front
+of the queue. 
