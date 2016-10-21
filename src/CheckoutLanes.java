@@ -4,14 +4,16 @@ public class CheckoutLanes {
 	private int shortestRegularLane = -1;
 
 	/**
-	 * Checks to see if there is at least one regular line
-	 * if not, throws exception
-	 * then adds regular lanes and express lanes
-	 * @param numExpress number of express lanes to be made
-	 * @param numRegular number of regular lanes to be made
+	 * Checks to see if there is at least one regular line if not, throws
+	 * exception then adds regular lanes and express lanes
+	 * 
+	 * @param numExpress
+	 *            number of express lanes to be made
+	 * @param numRegular
+	 *            number of regular lanes to be made
 	 */
 	@SuppressWarnings("unchecked")
-  public CheckoutLanes(int numExpress, int numRegular) {
+	public CheckoutLanes(int numExpress, int numRegular) {
 		if (numRegular < 1) {
 			throw new IllegalStateException();
 		} else {
@@ -28,8 +30,11 @@ public class CheckoutLanes {
 
 	/**
 	 * adds a shopper to one of the lanes
-	 * @param laneNumber the lane the shopper will go into
-	 * @param shopper the shopper to be added to the line
+	 * 
+	 * @param laneNumber
+	 *            the lane the shopper will go into
+	 * @param shopper
+	 *            the shopper to be added to the line
 	 */
 	public void enterLane(int laneNumber, Shopper shopper) {
 		if (laneNumber < expressQueues.length) {
@@ -40,9 +45,9 @@ public class CheckoutLanes {
 	}
 
 	/**
-	 * simulates the shoppers going through the lanes.
-	 * if a shopper in the express lane has too many (over 10) items,
-	 * then the shopper gets moved to the shortest regular lane
+	 * simulates the shoppers going through the lanes. if a shopper in the
+	 * express lane has too many (over 10) items, then the shopper gets moved to
+	 * the shortest regular lane
 	 */
 	public void simulateCheckout() {
 		while (shoppersPresent()) {
@@ -69,6 +74,12 @@ public class CheckoutLanes {
 		}
 	}
 
+	/**
+	 * determines whether or not a Shopper is in any of the queues
+	 * 
+	 * @return true if a shopper is in one of the queues return false if all
+	 *         queues are empty
+	 */
 	private boolean shoppersPresent() {
 		for (int i = 0; i < expressQueues.length; i++) {
 			if (expressQueues[i].size() > 0) {
@@ -83,6 +94,13 @@ public class CheckoutLanes {
 		return false;
 	}
 
+	/**
+	 * checks to see which expressQueue is the shortest
+	 * 
+	 * @return the number of the shortest expressQueue
+	 * 
+	 *         not currently used
+	 */
 //	private int shortestExpressQueue() {
 //		int min = 0;
 //		for (int i = 1; i < expressQueues.length; i++) {
@@ -94,6 +112,11 @@ public class CheckoutLanes {
 //		return min;
 //	}
 
+	/**
+	 * checks to see which regularQueue is the shortest
+	 * 
+	 * @return the number of the shortest regularQueue
+	 */
 	private int shortestRegularQueue() {
 		shortestRegularLane = 0;
 		for (int i = 1; i < regularQueues.length; i++) {

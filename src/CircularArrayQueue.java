@@ -1,6 +1,6 @@
 
 /**
- * @author zac
+ * @author Zachery Knoebel
  * 
  * This class creates a queue that is structured around a circular array
  */
@@ -41,6 +41,9 @@ public class CircularArrayQueue<E> implements Queue211<E> {
 	@Override
 	public boolean add(Object e) {
 		if (size >= data.length) {
+			// The reallocate method should be uncommented if the add and offer
+			// methods
+			// are to grow when the queue gets full.
 			// reallocate();
 			throw new IllegalStateException();
 		}
@@ -126,7 +129,12 @@ public class CircularArrayQueue<E> implements Queue211<E> {
 	}
 
 	/**
-	 * moves array objects to an array of double the size
+	 * moves array objects to an array of double the size this is to be used in
+	 * the add method so that when the queue becomes full, it will grow
+	 * 
+	 * because of the nature of the assignment, that this class is included
+	 * with, the reallocate() method is not currently used, however it is
+	 * written in the add method and can be used if it is uncommented
 	 */
 	@SuppressWarnings("unchecked")
 	private void reallocate() {

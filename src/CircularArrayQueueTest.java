@@ -110,7 +110,7 @@ public class CircularArrayQueueTest {
 		}
 
 		assertEquals(new Integer(0), q.remove()); // Should check that item
-													// returned is correct.
+		// returned is correct.
 		q.add(99); // This should
 		for (int j = 1; j < Q_SIZE; j++) {
 			q.remove();
